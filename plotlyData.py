@@ -12,7 +12,7 @@ app = dash.Dash(__name__)
 
 
 ## Load data
-df = pd.read_csv("C:\Python\Projects\Helloworld\intro_bees.csv")
+df = pd.read_csv("intro_bees.csv")
 
 df = df.groupby(['State','ANSI','Affected by','Year', 'state_code'])[['Pct of Colonies Impacted']].mean()
 
@@ -52,7 +52,7 @@ def update_graph(option_slctd):
     dff = dff[dff['Year'] == option_slctd]
     dff = dff[dff["Affected by"] == "Varroa_mites"]
 
-   fig = px.choropleth(
+    fig = px.choropleth(
        data_frame=df,
        locationmode='USA-states',
        locations='state_code',
@@ -62,7 +62,7 @@ def update_graph(option_slctd):
        color_continuous_scale=px.colors.sequential.YlOrRd,
        labels={'Pct of Colonies Impacted': '% of Bee Colonies'},
        template='plotly_dark'
-   )
+    )
 
 
     # fig = go.Figure(
@@ -83,7 +83,7 @@ def update_graph(option_slctd):
     # )
 
 
-   return container, fig
+    return container, fig
 
 
 if __name__ == '__main__':
